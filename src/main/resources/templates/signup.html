@@ -20,13 +20,15 @@
                         <h1 class="text-center">Register Here
                             <img style="width: 40px;" th:src="@{/image/book.gif}">
                         </h1>
-                        <form action="" method="post" id="signUpForm" th:action="@{/do_register}" th:object="${user}">
+                        <form novalidate action="" method="post" id="signUpForm" th:action="@{/do_register}" th:object="${user}">
                             
                             <!--Name Field-->
                             <div class="form-group">
                                 <label for="name_field">Your Name</label>
-                                <input name="name" type="text" class="form-control" id="name_field" aria-describedby="emailHelp"
+                                <input name="name" type="text" class="form-control" th:classappend="${#fields.hasErrors('name')}?'is-invalid':''" 
+                                id="name_field" aria-describedby="emailHelp"
                                 placeholder="Enter your name" required="required" th:value="${user.name}">
+                                <div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}"></div>
                             </div>
 
                             <!--Email Field-->
@@ -38,14 +40,14 @@
 
                             <!--Password Field-->
                             <div class="form-group">
-                                <label for="password_field">Your Name</label>
+                                <label for="password_field">Your Password</label>
                                 <input name="password" type="password" class="form-control" id="password_field" aria-describedby="emailHelp"
                                 placeholder="Enter your password" required="required">
                             </div>
 
                             <!-- User about field-->
                             <div class="form-group">
-                                <textarea name="about" rows="2" class="form-control" placeholder="Enter something about yourself" th:value="${user.about}"></textarea>
+                                <textarea name="about" rows="2" class="form-control" placeholder="Enter something about yourself" th:text="${user.about}"></textarea>
                             </div>
 
                             <!-- terms and condition agreement-->
