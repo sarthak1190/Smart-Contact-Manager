@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +14,6 @@
                     <div class="my-card">
                         <div th:if="${message}" th:classappend="${message.type}" class="alert" role="alert">
                             <p class="text-center" th:text="${message.content}"></p>
-
-                            
                         </div>
                         <h1 class="text-center">Register Here
                             <img style="width: 40px;" th:src="@{/image/book.gif}">
@@ -61,7 +59,11 @@
                                 <button class="btn btn-primary btn-success text-white font-weight-bold" type="submit">Submit</button>
                                 <button class="btn btn-primary btn-warning text-white font-weight-bold" type="reset">Reset</button>
                             </div>
-
+                            <br>
+                            <div>
+                                <p class="mb-0 text-center">Already have an account? <a href="/login" class="text-white-50 fw-bold">Login</a>
+                                </p>
+                            </div>
                         </form>
                     </div>
                 </div>

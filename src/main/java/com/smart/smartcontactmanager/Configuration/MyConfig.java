@@ -1,7 +1,5 @@
 package com.smart.smartcontactmanager.Configuration;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -50,7 +48,9 @@ public class MyConfig{
                      .requestMatchers("/user/**").hasRole("USER")
                      .requestMatchers("/**").permitAll()
              )
-                .formLogin(t -> t.loginPage("/login"))
+                .formLogin(t -> t.loginPage("/login")
+                                 .loginProcessingUrl("/dologin")
+                                 .defaultSuccessUrl("/user/index"))
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }

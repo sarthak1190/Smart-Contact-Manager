@@ -1,19 +1,91 @@
-body{
-    background: #e2e2e2!important;
+body {
+    background: #e2e2e2 !important;
 }
 
-.bg-primary{
-    background: black!important;
+.bg-primary {
+    background: black !important;
 }
-.banner{
-    width:100%;
+
+.banner {
+    width: 100%;
     height: 93vh;
-    background:url(../image/mountain-dark-nature.jpg);
+    background: url(../image/mountain-dark-nature.jpg);
     background-size: cover;
     color: #e2e2e2;
 }
 
-.my-card{
+.my-card {
     padding: 20px;
-    background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(../image/mountain-dark-nature.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../image/mountain-dark-nature.jpg);
+}
+
+#login .container #login-row #login-column #login-box {
+    margin-top: 120px;
+    max-width: 600px;
+    height: 420px;
+    border: 1px solid #9C9C9C;
+    background-color: transparent;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+}
+
+@media only screen and (max-width: 600px){
+    .sidebar{
+        display: none;
+        width: 80% !important;
+        background: rgb(97, 97, 210);
+        height: 100vh;
+        position: fixed;
+        padding-top: 20px;
+    }
+    .content{
+        margin-left: 0% !important;
+    }
+}
+
+.sidebar {
+    width: 18%;
+    background: rgb(108, 125, 145);
+    height: 100%;
+    position: fixed;
+    padding-top: 45px;
+    z-index: 99999999999999;
+}
+
+.sidebar a{
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: rgb(255, 254, 254);
+    font-weight: bold;
+}
+
+.sidebar a:hover{
+    background: rgb(0, 0, 0);
+}
+
+.sidebar .divider{
+    height: 0.5px;
+    width: 100%;
+    background: whitesmoke;
+    margin-top: 10px;
+}
+
+.content {
+    margin-left: 20%;
+}
+
+.sidebar .crossBtn{
+    position: absolute;
+    top: 0;
+    right: 35px;
+    font-size: 36px;
+    cursor: pointer;
 }
