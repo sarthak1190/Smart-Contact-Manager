@@ -26,16 +26,18 @@
                     </thead>
                     <tbody>
                       <tr th:each="c : ${contacts}">
-                        <th scope="row" th:text="${'SM2023'+c.cId}">1</th>
-                        <td th:text="${c.name}"></td>
-                        <td th:text="${c.nickName}">Otto</td>
-                        <td th:text="${c.phone}">@mdo</td>
-                        <td th:text="${c.email}">@mdo</td>
-                        <td th:text="${c.work}">@mdo</td>
-                        <td th:text="${c.address}">@mdo</td>
+                        <th scope="row" th:text="${'SM2023'+c.cId}"></th>
+                        <td> <img src="" class="my_profile_picture" th:src="@{'/image/'+${c.image}}" alt="profile photo"/> <span th:text="${c.name}"></span></td>
+                        <td th:text="${c.nickName}"></td>
+                        <td th:text="${c.phone}"></td>
+                        <td> <a href="#" th:href="@{'/user/contact/'+${c.cId}}"><span th:text="${c.email}"></span></span></a></td>
+                        <td th:text="${c.work}"></td>
+                        <td th:text="${c.address}"></td>
                         <td>
-                            <button type="submit" class="btn btn-success">Delete</button>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button th:onclick="|deleteContact(${c.cId})|" class="btn btn-success">Delete</button>
+                            <form method="post" th:action="@{'/user/update-contact/'+${c.cId}}" class="mt-2">
+                              <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
                         </td>
                       </tr>
                     </tbody>
