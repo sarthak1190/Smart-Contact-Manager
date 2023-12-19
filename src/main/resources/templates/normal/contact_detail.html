@@ -45,7 +45,9 @@
                 </div>
                 <div class="container text-center">
                     <button type="submit" class="btn btn-success">Delete</button>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <form method="post" th:action="@{'/user/update-contact/'+${contact.cId}}" class="mt-2">
+                      <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
                 </div>
             </div>
         </div>

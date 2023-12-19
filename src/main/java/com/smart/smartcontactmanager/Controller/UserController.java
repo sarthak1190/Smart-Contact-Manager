@@ -178,4 +178,51 @@ public class UserController {
         m.addAttribute("contact", contact);
         return "normal/update_form";
     }
+
+    //update contact handler
+    @PostMapping("/process-update")
+    public String updateHandler(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile file, Principal p, Model m){
+        System.out.println("Contact name: "+contact.getName());
+        System.out.println("Contact ID: "+contact.getcId());
+
+        try {
+            //old contact details
+            Contact oldContactDetails = this.contactRepository.findById(contact.getcId()).get();
+            if(!file.isEmpty()){
+                //file work..
+                //file  
+
+                //delete old photo
+
+                File deleteFile=new ClassPathResource("static/image").getFile();
+                File file1=new File(deleteFile,oldContactDetails.getImage());
+                file1.delete();
+
+                //update new photo
+                File saveFile=new ClassPathResource("static/image").getFile();
+                Path path=Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+                Files.copy(file.getInputStream(),path,StandardCopyOption.REPLACE_EXISTING);
+                contact.setImage(file.getOriginalFilename());
+                System.out.println("File is uploaded.");
+            }
+            else{
+                contact.setImage(oldContactDetails.getImage());
+            }
+            User user= this.userRepository.getUserByUserName(p.getName());
+            contact.setUser(user);
+            this.contactRepository.save(contact);
+
+            m.addAttribute("message", new Message("Your Contact is updated..","success"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/user/contact/"+contact.getcId();
+    }
+
+    //profile view handler
+    @GetMapping("/profile")
+    public String profile(Model m){
+        m.addAttribute("title", "Profile");
+        return "normal/profile";
+    }
 }
